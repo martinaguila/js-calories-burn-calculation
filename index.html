@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-oGOeop4Jz6BjDhfOTw8aKTw2Ft0FVRr6uy1jbxCg5C3BzEVjXcR5qm2c1MAGIjHw" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Calories Burn Prediction</title>
+</head>
+<body>
+    <header>
+        <h1>Calories Burn Prediction</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home/Profile</a></li>
+            <li><a href="#calendar">Calendar</a></li>
+            <li><a href="#calculation">Calculation</a></li>
+            <li><a href="#progress">Progress</a></li>
+            <li><a href="#analysis">Analysis</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#feedback">Feedback Loop</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <h1>Calendar</h1>
+        <label>Check calendar for records</label>
+        <input type="date" id="calendar">
+        <div id="data-display">
+            <!-- The retrieved data will be displayed here -->
+            <div class="modal" id="myModal">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <!-- Content to display in the modal -->
+                    <div id="modalContent">
+                        <!-- Your data from the calendar selection -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="profile">
+            <h2>User Profile</h2>
+            <form id="profile-form">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required>
+                <label for="activity">Select Physical Activity:</label>
+                <select id="activity" name="activity">
+                    <option value="walking">Walking</option>
+                    <option value="running">Running</option>
+                    <!-- Add more activity options -->
+                </select>
+                <label for="food-intake">Food Intake (calories):</label>
+                <input type="number" id="food-intake" name="food-intake" required>
+                <label for="diet">Diet Type:</label>
+                <select id="diet" name="diet">
+                    <option value="balanced">Balanced</option>
+                    <option value="low-carb">Low Carb</option>
+                    <!-- Add more diet options -->
+                </select>
+                <label for="protein-intake">Protein Intake (grams):</label>
+                <input type="number" id="protein-intake" name="protein-intake" required>
+                <label for="duration">Duration (minutes):</label>
+                <input type="number" id="duration" name="duration" required>
+                <button type="submit">Calculate</button>
+            </form>
+        </section>
+
+        <section id="progress" style="margin-bottom: 25px">
+            <h2>Progress</h2>
+            <p>Your Daily Calorie Burn Progress:</p>
+            <div id="progress-bar">
+                <div id="progress-indicator"></div>
+                <div id="progress-text">0%</div>
+            </div>
+        </section>
+        
+        <section id="calculation">
+            <h2>Calorie Calculation</h2>
+            <p>Estimated Calorie Burn: <span id="calorie-result">0</span> calories</p>
+        </section>
+
+        <section id="analysis">
+            <h2>Analysis</h2>
+            <p>Based on your input and calculations, here are some insights:</p>
+            <div id="analysis-content"></div>
+        </section>
+        
+        <!-- <section id="results">
+            <h2>Results</h2>
+            <p>Here's a summary of your estimated calorie expenditure:</p>
+            <p>Estimated Calorie Burn: <span id="calorie-result">0</span> calories</p>
+        </section> -->
+        
+        <!-- Add sections for calendar, announcements, progress, analysis, results, and feedback as needed -->
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Calories Burn Prediction</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
