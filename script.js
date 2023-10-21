@@ -12,6 +12,7 @@ document.getElementById('food-intake').value = 2500;
 document.getElementById('diet').value = 'balanced';
 document.getElementById('protein-intake').value = 100;
 document.getElementById('duration').value = 60;
+document.getElementById('goal').value = 2000;
 
 // Function to calculate calorie burn
 function calculateCalorieBurn(userProfile, activity, foodIntake, diet, proteinIntake, duration) {
@@ -44,13 +45,18 @@ function calculateCalorieBurn(userProfile, activity, foodIntake, diet, proteinIn
 
 // Function to update the progress bar
 function updateProgress(caloriesBurned, goalCalories) {
+    console.log("goalCalories",goalCalories)
     const progressIndicator = document.getElementById('progress-indicator');
-    
+    const progressText = document.getElementById('progress-text'); // Add this line
+
     // Calculate the percentage of progress
     const progressPercentage = (caloriesBurned / goalCalories) * 100;
 
     // Update the width of the progress indicator
     progressIndicator.style.width = progressPercentage + '%';
+
+    // Update the percentage text
+    progressText.textContent = progressPercentage.toFixed(1) + '%'; // Set text content with a fixed decimal point
 }
 
 // Function to update the "Analysis" section based on calculations
@@ -113,7 +119,8 @@ profileForm.addEventListener('submit', function (e) {
     calorieResult.textContent = calorieBurn.toFixed(2) + " calories";
 
     // Update the progress bar with the calculated calories and the user's goal
-    updateProgress(calorieBurn, 2000);
+    const goalText = parseInt(document.getElementById('goal').value);
+    updateProgress(calorieBurn, goalText);
 
     // Create an object to save in localStorage
     const dataToSave = {
@@ -292,4 +299,109 @@ function getDataFromLocalStorage(date) {
     return null;
 }
 
-// Implement functionality for other sections
+// Get references to the feedback elements
+const feedbackTextarea = document.getElementById("feedback-text");
+const saveButton = document.getElementById("save-feedback");
+
+// Add an event listener to the "Save" button
+saveButton.addEventListener("click", function() {
+    // Get the user's feedback from the textarea
+    const userFeedback = feedbackTextarea.value;
+    
+    // Check if there's existing feedback in local storage
+    const existingFeedback = localStorage.getItem("userFeedback");
+    
+    if (existingFeedback) {
+        // Parse the existing feedback (assuming it's JSON) and add the new feedback
+        const feedbackArray = JSON.parse(existingFeedback);
+        feedbackArray.push(userFeedback);
+        localStorage.setItem("userFeedback", JSON.stringify(feedbackArray));
+    } else {
+        // Create a new array and save the feedback
+        localStorage.setItem("userFeedback", JSON.stringify([userFeedback]));
+    }
+    
+    // Clear the textarea
+    feedbackTextarea.value = "";
+    
+    // Optionally, you can provide a confirmation to the user
+    alert("Feedback saved successfully!");
+});
+
+// Get references to the chat icon and feedback modal
+const chatIcon = document.querySelector('.icon-holder img');
+const feedbackModal = document.getElementById('feedbackModal');
+const feedbackModalBody = document.getElementById('feedback-modal-body');
+
+// Add an event listener to the chat icon
+chatIcon.addEventListener('click', function () {
+    // Check if there's feedback in local storage
+    const userFeedback = localStorage.getItem("userFeedback");
+
+    if (userFeedback) {
+        // Parse the feedback (assuming it's an array of feedback messages)
+        const feedbackArray = JSON.parse(userFeedback);
+        
+        // Create HTML content for displaying feedback
+        let feedbackHTML = "<ul>";
+        feedbackArray.forEach(function (feedback) {
+            feedbackHTML += `<li>${feedback}</li>`;
+        });
+        feedbackHTML += "</ul>";
+        
+        // Set the modal body content with the feedback
+        feedbackModalBody.innerHTML = feedbackHTML;
+        
+        // Show the modal
+        feedbackModal.style.display = 'block';
+    } else {
+        // If no feedback is available, display a message
+        feedbackModalBody.innerHTML = '<p>No feedback available.</p>';
+        
+        // Show the modal
+        feedbackModal.style.display = 'block';
+    }
+});
+
+const closeModalFb = document.getElementById('closeModalFb');
+// Add an event listener to close the modal
+closeModalFb.addEventListener('click', function () {
+    feedbackModal.style.display = 'none';
+    calendarInput.value = ''; // Reset the calendar input
+});
+
+document.getElementById('announcement-icon').addEventListener('click', function () {
+    // Replace the following with your announcement content
+    const announcementContent = `
+        <p>We are excited to announce our upcoming event:</p>
+        <h5>Winter Fitness Challenge</h5>
+        <p>Date: November 15, 2023</p>
+        <p>Description: Get ready to kick-start your winter fitness journey! Join our Winter Fitness Challenge starting on November 15th. It's a perfect opportunity to burn those extra calories and stay active during the holiday season. We have exciting prizes for the most dedicated participants. Don't miss out!</p>
+    `;
+
+    // Set the content of the announcement modal
+    document.getElementById('announcement-modal-body').innerHTML = announcementContent;
+
+    // Show the announcement modal
+    announcementModal.style.display = 'block';
+});
+
+
+// Get references to the chat icon and feedback modal
+const announcementModal = document.getElementById('announcementModal');
+const announcementModalBody = document.getElementById('announcement-modal-body');
+
+// Add an event listener to close the feedback modal
+announcementModal.addEventListener('click', function (event) {
+    if (event.target === announcementModal) {
+        announcementModal.style.display = 'none';
+    }
+});
+
+const closeModalAn = document.getElementById('closeModalAn');
+// Add an event listener to close the modal
+closeModalAn.addEventListener('click', function () {
+    announcementModal.style.display = 'none';
+    calendarInput.value = ''; // Reset the calendar input
+});
+

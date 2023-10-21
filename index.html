@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-oGOeop4Jz6BjDhfOTw8aKTw2Ft0FVRr6uy1jbxCg5C3BzEVjXcR5qm2c1MAGIjHw" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Calories Burn Prediction</title>
 </head>
 <body>
     <header>
-        <h1>Calories Burn Prediction</h1>
+        <h1 class="title">Calories Burn Prediction</h1>
+        <div class="icon-holder">
+            <img class="chats" src="assets/icons8-comments-24.png">
+            <img class="announcement" src="assets/icons8-announcement-24.png" id="announcement-icon">
+        </div>
     </header>
-    <nav>
+    <!-- <nav>
         <ul>
             <li><a href="#home">Home/Profile</a></li>
             <li><a href="#calendar">Calendar</a></li>
@@ -22,7 +27,7 @@
             <li><a href="#results">Results</a></li>
             <li><a href="#feedback">Feedback Loop</a></li>
         </ul>
-    </nav>
+    </nav> -->
     
     <main>
         <h1>Calendar</h1>
@@ -41,42 +46,153 @@
             </div>
         </div>
 
+        <!-- Feedback Modal -->
+        <div id="feedbackModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Feedback</h5>
+                        <span class="close" id="closeModalFb">&times;</span>
+                    </div>
+                    <div class="modal-body" id="feedback-modal-body">
+                        <!-- Feedback will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Announcement Modal -->
+        <div class="modal" id="announcementModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Announcement</h5>
+                        <span class="close" id="closeModalAn">&times;</span>
+                    </div>
+                    <div class="modal-body" id="announcement-modal-body">
+                        <!-- Announcement content will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <section id="profile">
             <h2>User Profile</h2>
             <form id="profile-form">
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" name="weight" required>
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height" name="height" required>
-                <label for="activity">Select Physical Activity:</label>
-                <select id="activity" name="activity">
-                    <option value="walking">Walking</option>
-                    <option value="running">Running</option>
-                    <!-- Add more activity options -->
-                </select>
-                <label for="food-intake">Food Intake (calories):</label>
-                <input type="number" id="food-intake" name="food-intake" required>
-                <label for="diet">Diet Type:</label>
-                <select id="diet" name="diet">
-                    <option value="balanced">Balanced</option>
-                    <option value="low-carb">Low Carb</option>
-                    <!-- Add more diet options -->
-                </select>
-                <label for="protein-intake">Protein Intake (grams):</label>
-                <input type="number" id="protein-intake" name="protein-intake" required>
-                <label for="duration">Duration (minutes):</label>
-                <input type="number" id="duration" name="duration" required>
-                <button type="submit">Calculate</button>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="age">Age:</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="age" name="age" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="gender">Gender:</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <select id="gender" name="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="weight">Weight (kg):</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="weight" name="weight" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="height">Height (cm):</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="height" name="height" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="activity">Select Physical Activity:</label>
+                            </div> 
+                            <div class="col-6 input-holder">
+                                <select id="activity" name="activity">
+                                    <option value="walking">Walking</option>
+                                    <option value="running">Running</option>
+                                    <!-- Add activity here -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="food-intake">Food Intake (calories):</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="food-intake" name="food-intake" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="diet">Diet Type:</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <select id="diet" name="diet">
+                                    <option value="balanced">Balanced</option>
+                                    <option value="low-carb">Low Carb</option>
+                                    <!-- Add more diet options -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="protein-intake">Protein Intake (grams):</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="protein-intake" name="protein-intake" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="duration">Duration (minutes):</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="duration" name="duration" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 label-holder">
+                                <label for="goal">Goal</label>
+                            </div>
+                            <div class="col-6 input-holder">
+                                <input type="number" id="goal" name="goal" required>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-holder">
+                    <button class="btn btn-success" type="submit">Calculate</button>
+                </div>
+                
             </form>
         </section>
-
+         
         <section id="progress" style="margin-bottom: 25px">
             <h2>Progress</h2>
             <p>Your Daily Calorie Burn Progress:</p>
@@ -88,22 +204,22 @@
         
         <section id="calculation">
             <h2>Calorie Calculation</h2>
-            <p>Estimated Calorie Burn: <span id="calorie-result">0</span> calories</p>
+            <p>Estimated Calorie Burn: <strong><span id="calorie-result">0</span></strong></p>
         </section>
 
         <section id="analysis">
             <h2>Analysis</h2>
             <p>Based on your input and calculations, here are some insights:</p>
-            <div id="analysis-content"></div>
+            <i><div id="analysis-content"></div></i>
         </section>
         
-        <!-- <section id="results">
-            <h2>Results</h2>
-            <p>Here's a summary of your estimated calorie expenditure:</p>
-            <p>Estimated Calorie Burn: <span id="calorie-result">0</span> calories</p>
-        </section> -->
-        
-        <!-- Add sections for calendar, announcements, progress, analysis, results, and feedback as needed -->
+        <section id="feedback">
+            <h2>Feedback</h2>
+            <textarea id="feedback-text" rows="4" cols="100" placeholder="Enter your feedback here"></textarea>
+            <div>
+                <button id="save-feedback" class="btn btn-success">Save</button>
+            </div>
+        </section>
     </main>
     
     <footer>

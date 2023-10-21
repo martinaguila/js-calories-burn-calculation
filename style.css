@@ -1,3 +1,23 @@
+body{
+    padding: 20px;
+    background-image: url('assets/workout.jpeg'); /* Replace 'your-image.jpg' with the path to your image */
+    background-size: cover; /* Adjust to cover the entire viewport */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    color: #f5f5f5;
+}
+
+.title{
+    text-align: center;
+}
+
+h1{
+    margin-bottom: 30px;
+}
+
+h2{
+    margin-top: 50px;
+}
+
 /* Add this CSS code to style.css */
 #progress-bar {
     width: 100%;
@@ -28,6 +48,7 @@
 }
 
 .modal-content {
+    color: #333333;
     background-color: #fff;
     width: 80%;
     max-width: 600px;
@@ -45,12 +66,68 @@
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    padding-left: 91%;
+    /* padding-left: 91%; */
     position: absolute;
     top: 1%;
+    right: 5%;
 }
 
 /* Close button hover style */
-.close:hover {
+/* .close:hover {
     color: black;
+} */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+    grid-gap: 10px; /* Gap between columns */
+    margin-bottom: 30px;
+}
+
+.grid-item {
+    background: #202020;
+    border: 1px solid #ccc; /* Add borders for visual separation */
+    padding: 20px;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px; */
+}
+
+.col-6.label-holder {
+    text-align: right;
+}
+
+.row:not(:last-child) {
+    margin-bottom: 20px;    
+}
+
+footer{
+    margin-top: 100px;
+    text-align: center;
+}
+
+button{
+    width: 100px;
+}
+
+.button-holder{
+    text-align: center;
+}
+
+.my-custom-icon{
+    color: red;
+}
+
+.icon-holder{
+    top: 5%;
+    position: absolute;
+    cursor: pointer;
+}
+
+/* .chats{
+    top: 5%;
+} */
+
+.announcement {
+    padding-left: 20px;
 }
